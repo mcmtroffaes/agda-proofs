@@ -1,7 +1,7 @@
-module 05-naturals where
+module 100-naturals where
 
-open import 01-bottom
-open import 02-equivalence
+open import 010-bottom
+open import 020-equivalence
 
 record Natural
   {N : Set}

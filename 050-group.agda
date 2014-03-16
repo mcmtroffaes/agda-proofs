@@ -1,6 +1,6 @@
-module 06-group where
+module 050-group where
 
-open import 04-monoid
+open import 040-monoid
 
 record Group
   {M : Set}

@@ -1,8 +1,8 @@
-module 04-monoid where
+module 040-monoid where
 
 -- We need semigroups.
 
-open import 03-semigroup
+open import 030-semigroup
 
 -- The next useful structure is a monoid, which is a semigroup with
 -- (left and right) identity element.

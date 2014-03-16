@@ -1,8 +1,8 @@
-module 03-semigroup where
+module 030-semigroup where
 
 -- We need equivalence.
 
-open import 02-equivalence
+open import 020-equivalence
 
 -- Semigroups are basically a set with equality and some binary
 -- operator which is associative and respects equality.
