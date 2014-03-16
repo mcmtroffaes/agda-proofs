@@ -2,7 +2,7 @@ module 02-equivalence where
 
 -- We have ⊥ (bottom) to represent logical contradiction.
 
-open import 01-bottom public
+open import 01-bottom
 
 -- Next, we need to be able to work with equalities. Equalities are
 -- defined between objects of the same type. Two objects are equal if

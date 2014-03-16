@@ -1,8 +1,8 @@
 module 03-semigroup where
 
--- We have contradiction and equivalence.
+-- We need equivalence.
 
-open import 02-equivalence public
+open import 02-equivalence
 
 -- Semigroups are basically a set with equality and some binary
 -- operator which is associative and respects equality.
