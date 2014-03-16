@@ -1,16 +1,23 @@
 module 050-group where
 
+-- We need monoids.
+
 open import 040-monoid
+
+-- A group is a monoid where every element has an inverse. This is
+-- equivalent to saying that we have a function mapping every element
+-- to an inverse of that element: this function is called "invert"
+-- below.
 
 record Group
   {M : Set}
   (_==_ : M -> M -> Set)
   (_*_ : M -> M -> M)
   (id : M)
+  (invert : M -> M)
   : Set1 where
   field
     monoid : Monoid _==_ _*_ id
-    invert : M -> M
     icong : ∀ {r s} -> (r == s) -> (invert r) == (invert s)
     r*ir==id : ∀ {r} -> (r * (invert r)) == id
     ir*r==id : ∀ {r} -> ((invert r) * r) == id
