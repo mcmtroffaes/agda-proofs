@@ -3,7 +3,7 @@ module 110-natural-model where
 open import 100-natural
 
 -- We prove that there is a model of the naturals within Agda's lambda
--- calculus.
+-- calculus. This also shows that the Peano axioms are consistent.
 
 data ℕ : Set where
   zero : ℕ
