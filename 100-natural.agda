@@ -1,4 +1,4 @@
-module 100-naturals where
+module 100-natural where
 
 open import 010-bottom
 open import 020-equivalence
