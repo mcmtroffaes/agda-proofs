@@ -1,6 +1,6 @@
 module 020-equivalence where
 
--- We have ⊥ (bottom) to represent logical contradiction.
+-- We need False to represent logical contradiction.
 
 open import 010-bottom
 
@@ -46,7 +46,7 @@ record Equivalence
   -- relation.
 
   _!=_ : M -> M -> Set
-  m != n = (m == n) -> ⊥
+  m != n = (m == n) -> False
 
   -- Prove transitivity chains.
   -- (TODO: Use a type dependent function for these chains.)

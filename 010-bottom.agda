@@ -1,10 +1,18 @@
 module 010-bottom where
 
 -- In Agda, types are theorems, and instances of types are proofs. The
--- simplest theorem is ⊥ (bottom): a theorem which has no proof, and
--- is useful to represent any contradictory situation. We declare ⊥ as
--- an algebraic data type without constructors. If ⊥ has no
+-- simplest theorem is the theorem which has no proof, and is useful
+-- to represent any contradictory situation. We declare False as an
+-- algebraic data type without constructors. If "False" has no
 -- constructors, then it also has no instances, and thereby perfectly
--- serves our purpose.
+-- serves our purpose.  Note that what we call here "False" is also
+-- sometimes also called bottom and is denoted by ⊥.
 
-data ⊥ : Set where
+data False : Set where
+
+-- The next simplest theorem is the trivial theorem which is always
+-- true. We declare it as an algebraic data type "True", with one
+-- constructor named "trivial".
+
+data True : Set where
+  trivial : True

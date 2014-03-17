@@ -18,12 +18,12 @@ record NaturalWithoutInduction
   -- axioms
   field
     equiv : Equivalence _==_
-    sucn!=zero : ∀ {r} -> suc r == zero -> ⊥
+    sucn!=zero : ∀ {r} -> suc r == zero -> False
     sucinjective : ∀ {r s} -> suc r == suc s -> r == s
     cong : ∀ {r s} -> r == s -> suc r == suc s
     not-induction :
       ((p : M -> Set) -> p zero -> (∀ n -> p n -> p (suc n)) -> ∀ n -> p n)
-      -> ⊥
+      -> False
 
   open Equivalence equiv public
 
@@ -37,9 +37,6 @@ data M : Set where
 
 data _==_ : M -> M -> Set where
   refl : ∀ {r} -> r == r
-
-data T : Set where
-  trivial : T
 
 thm-M-==-is-equivalence : Equivalence _==_
 thm-M-==-is-equivalence = record {
@@ -62,7 +59,7 @@ thm-M-is-natural-without-induction = record {
   not-induction = not-induction
   }
   where
-    sucn!=zero : ∀ {r} -> suc r == zero1 -> ⊥
+    sucn!=zero : ∀ {r} -> suc r == zero1 -> False
     sucn!=zero ()
     sucinjective : ∀ {r s} -> suc r == suc s -> r == s
     sucinjective refl = refl
@@ -75,13 +72,13 @@ thm-M-is-natural-without-induction = record {
     -- successors).
     not-induction :
       ((p : M -> Set) -> p zero1 -> (∀ n -> p n -> p (suc n)) -> ∀ n -> p n)
-      -> ⊥
+      -> False
     not-induction induction = induction p base hypothesis zero2
       where
         -- Property "is a successor of zero1 but not a successor of zero2".
         p : M -> Set
-        p zero1 = T     -- true for zero1
-        p zero2 = ⊥     -- false (no proof) for zero2
+        p zero1 = True  -- true for zero1
+        p zero2 = False -- false (no proof) for zero2
         p (suc n) = p n -- true for successor of n if and only if true for n
 
         -- Base case is trivial.
@@ -95,7 +92,7 @@ thm-M-is-natural-without-induction = record {
 
 -- To round this off, we explicitly prove that M is not natural.
 
-thm-M-is-not-natural : (Natural zero1 suc _==_) -> ⊥
+thm-M-is-not-natural : (Natural zero1 suc _==_) -> False
 thm-M-is-not-natural nat =
   (NaturalWithoutInduction.not-induction thm-M-is-natural-without-induction)
   (Natural.induction nat)

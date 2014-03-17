@@ -35,7 +35,7 @@ thm-ℕ-is-natural = record {
   induction = induction
   }
   where
-    sucn!=zero : ∀ {r} -> suc r == zero -> ⊥
+    sucn!=zero : ∀ {r} -> suc r == zero -> False
     sucn!=zero ()
     sucinjective : ∀ {r s} -> suc r == suc s -> r == s
     sucinjective refl = refl

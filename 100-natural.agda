@@ -13,7 +13,7 @@ record Natural
   -- axioms
   field
     equiv : Equivalence _==_
-    sucn!=zero : ∀ {r} -> suc r == zero -> ⊥
+    sucn!=zero : ∀ {r} -> suc r == zero -> False
     sucinjective : ∀ {r s} -> suc r == suc s -> r == s
     cong : ∀ {r s} -> r == s -> suc r == suc s
     induction : (p : N -> Set) -> p zero -> (∀ n -> p n -> p (suc n)) -> (∀ n -> p n)
