@@ -2,7 +2,7 @@ module 020-equivalence where
 
 -- We need False to represent logical contradiction.
 
-open import 010-bottom
+open import 010-false-true
 
 -- Next, we need to be able to work with equalities. Equalities are
 -- defined between objects of the same type. Two objects are equal if

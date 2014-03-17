@@ -1,6 +1,6 @@
 module 110-natural-model where
 
-open import 010-bottom
+open import 010-false-true
 open import 020-equivalence
 open import 100-natural
 

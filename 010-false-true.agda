@@ -1,4 +1,4 @@
-module 010-bottom where
+module 010-false-true where
 
 -- In Agda, types are theorems, and instances of types are proofs. The
 -- simplest theorem is the theorem which has no proof, and is useful
