@@ -64,3 +64,22 @@ record Equivalence
            -> (r == s) -> (s == t) -> (t == u) -> (u == v) -> (v == w)
            -> (w == x) -> (r == x)
   trans6 p1 p2 p3 p4 p5 p6 = trans (trans5 p1 p2 p3 p4 p5) p6
+
+-- Now we construct a trivial model of equivalence: two instances of a
+-- type are equivalent if they reduce to the same normal form. (Note
+-- that Agda reduces expressions to normal form for us.)
+
+data _≡_ {A : Set} : A -> A -> Set where
+  refl : ∀ {r} -> r ≡ r
+
+thm-≡-is-equivalence : {A : Set} -> Equivalence {A} _≡_
+thm-≡-is-equivalence = record {
+  refl = refl;
+  symm = symm;
+  trans = trans
+  }
+  where
+    symm : ∀ {r s} -> r ≡ s -> s ≡ r
+    symm refl = refl
+    trans : ∀ {r s t} -> r ≡ s -> s ≡ t -> r ≡ t
+    trans refl refl = refl

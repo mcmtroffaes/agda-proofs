@@ -35,35 +35,20 @@ data M : Set where
   zero2 : M
   suc : M -> M
 
-data _==_ : M -> M -> Set where
-  refl : ∀ {r} -> r == r
-
-thm-M-==-is-equivalence : Equivalence _==_
-thm-M-==-is-equivalence = record {
-  refl = refl;
-  symm = symm;
-  trans = trans
-  }
-  where
-    symm : ∀ {r s} -> r == s -> s == r
-    symm refl = refl
-    trans : ∀ {r s t} -> r == s -> s == t -> r == t
-    trans refl refl = refl
-
-thm-M-is-natural-without-induction : NaturalWithoutInduction zero1 suc _==_
+thm-M-is-natural-without-induction : NaturalWithoutInduction zero1 suc _≡_
 thm-M-is-natural-without-induction = record {
-  equiv = thm-M-==-is-equivalence;
+  equiv = thm-≡-is-equivalence;
   sucn!=zero = sucn!=zero;
   sucinjective = sucinjective;
   cong = cong;
   not-induction = not-induction
   }
   where
-    sucn!=zero : ∀ {r} -> suc r == zero1 -> False
+    sucn!=zero : ∀ {r} -> suc r ≡ zero1 -> False
     sucn!=zero ()
-    sucinjective : ∀ {r s} -> suc r == suc s -> r == s
+    sucinjective : ∀ {r s} -> suc r ≡ suc s -> r ≡ s
     sucinjective refl = refl
-    cong : ∀ {r s} -> r == s -> suc r == suc s
+    cong : ∀ {r s} -> r ≡ s -> suc r ≡ suc s
     cong refl = refl
     -- To prove that induction fails, we test the property "is a
     -- successor of zero1 but not of zero2". This holds for zero1 (the
@@ -92,7 +77,7 @@ thm-M-is-natural-without-induction = record {
 
 -- To round this off, we explicitly prove that M is not natural.
 
-thm-M-is-not-natural : (Natural zero1 suc _==_) -> False
+thm-M-is-not-natural : (Natural zero1 suc _≡_) -> False
 thm-M-is-not-natural nat =
   (NaturalWithoutInduction.not-induction thm-M-is-natural-without-induction)
   (Natural.induction nat)

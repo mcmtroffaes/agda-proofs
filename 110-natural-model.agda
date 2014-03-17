@@ -11,35 +11,20 @@ data ℕ : Set where
   zero : ℕ
   suc : ℕ -> ℕ
 
-data _==_ : ℕ -> ℕ -> Set where
-  refl : ∀ {r} -> r == r
-
-thm-ℕ-==-is-equivalence : Equivalence _==_
-thm-ℕ-==-is-equivalence = record {
-  refl = refl;
-  symm = symm;
-  trans = trans
-  }
-  where
-    symm : ∀ {r s} -> r == s -> s == r
-    symm refl = refl
-    trans : ∀ {r s t} -> r == s -> s == t -> r == t
-    trans refl refl = refl
-
-thm-ℕ-is-natural : Natural zero suc _==_
+thm-ℕ-is-natural : Natural zero suc _≡_
 thm-ℕ-is-natural = record {
-  equiv = thm-ℕ-==-is-equivalence;
+  equiv = thm-≡-is-equivalence;
   sucn!=zero = sucn!=zero;
   sucinjective = sucinjective;
   cong = cong;
   induction = induction
   }
   where
-    sucn!=zero : ∀ {r} -> suc r == zero -> False
+    sucn!=zero : ∀ {r} -> suc r ≡ zero -> False
     sucn!=zero ()
-    sucinjective : ∀ {r s} -> suc r == suc s -> r == s
+    sucinjective : ∀ {r s} -> suc r ≡ suc s -> r ≡ s
     sucinjective refl = refl
-    cong : ∀ {r s} -> r == s -> suc r == suc s
+    cong : ∀ {r s} -> r ≡ s -> suc r ≡ suc s
     cong refl = refl
 
     -- This is the only tricky bit: proving the principle of induction.
